@@ -251,7 +251,7 @@ body {
 
 .card-image.active { opacity: 1; }
 
-/* Image dots — positioned at BOTTOM of image area */
+/* Image dots */
 .image-dots {
     position: absolute;
     bottom: 10px;
@@ -287,7 +287,7 @@ body {
     cursor: pointer;
 }
 
-/* Card info bar — name only, clickable to open modal */
+/* Card info bar */
 .card-info-bar {
     padding: 12px 16px 10px;
     background: #fff;
@@ -312,7 +312,7 @@ body {
     white-space: nowrap;
 }
 
-/* Action buttons — filled, spaced out */
+/* Action buttons */
 .card-actions {
     display: flex;
     justify-content: space-around;
@@ -347,7 +347,7 @@ body {
 .btn-like { background: #2ecc71; }
 
 /* ============================================
-   CARD INFO MODAL  (replaces flip)
+   CARD INFO MODAL
    ============================================ */
 .card-modal-overlay {
     display: none;
@@ -495,7 +495,7 @@ body {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-/* Hide swipe hints when deck is exhausted */
+/* Hide swipe hints when deck is finished */
 .tinder-arena.hidden {
     visibility: hidden;
     pointer-events: none;
@@ -549,7 +549,7 @@ body {
 }
 
 /* ============================================
-   MAIN CONTENT & CAROUSELS  (original OoberBooks styles)
+   MAIN CONTENT & CAROUSELS
    ============================================ */
 .main-content {
     padding: 10px 20px;
