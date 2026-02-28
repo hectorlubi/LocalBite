@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Bites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">Local Bites</a>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search restaurants...">
+                <button type="button" onclick="searchBooks()">Search</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tinder Hero Section -->
+    <section class="tinder-hero">
+        <div class="hero-header">
+            <h1>Local <span>Bites</span></h1>
+            <p>Swipe to find your next favourite restaurant!</p>
+        </div>
+
+        <div class="tinder-arena" id="tinderArena">
+            <div class="swipe-hint left">
+                <span class="swipe-arrow">←</span>
+                <span>Pass</span>
+            </div>
+            <div class="card-stack" id="cardStack"></div>
+            <div class="swipe-hint right">
+                <span class="swipe-arrow">→</span>
+                <span>Like</span>
+            </div>
+        </div>
+
+        <div class="tinder-empty" id="tinderEmpty">
+            <div class="empty-text">You've seen all restaurants!</div>
+            <div class="empty-sub">Check back later for more options.</div>
+            <button class="refresh-btn" onclick="resetTinderDeck()">Start Over</button>
+        </div>
+    </section>
+
+    <!-- Info Modal -->
+    <div class="card-modal-overlay" id="cardModal">
+        <div class="card-modal">
+            <button class="card-modal-close" onclick="closeCardModal()">&times;</button>
+            <div class="card-modal-header">
+                <div class="card-modal-title" id="cardModalTitle"></div>
+            </div>
+            <div class="card-modal-body" id="cardModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <section class="book-section">
+            <div class="section-header">
+                <h2 class="section-title">For You</h2>
+            </div>
+            <div class="carousel-container">
+                <button class="carousel-nav prev" onclick="scrollCarousel('featured', -1)">‹</button>
+                <div class="carousel-wrapper">
+                    <div class="book-carousel" id="featured-carousel">
+                        <div class="book-card" style="background-image: url('assets/amulet.jpg');" onclick="openCardModal('Amulet')">
+                            <div class="book-info"><div class="book-title">Amulet</div><div class="book-author">Kazu Kibuishi</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/c22.jpg');" onclick="openCardModal('Catch-22')">
+                            <div class="book-info"><div class="book-title">Catch-22</div><div class="book-author">Joseph Heller</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/tgg.jpg');" onclick="openCardModal('The Great Gatsby')">
+                            <div class="book-info"><div class="book-title">The Great Gatsby</div><div class="book-author">F. Scott Fitzgerald</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/rye.jpg');" onclick="openCardModal('The Catcher in the Rye')">
+                            <div class="book-info"><div class="book-title">The Catcher in the Rye</div><div class="book-author">J. D. Salinger</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/moby.jpg');" onclick="openCardModal('Moby-Dick')">
+                            <div class="book-info"><div class="book-title">Moby-Dick</div><div class="book-author">Herman Melville</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/out.jpg');" onclick="openCardModal('The Outsiders')">
+                            <div class="book-info"><div class="book-title">The Outsiders</div><div class="book-author">S. E. Hinton</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/iliad.jpg');" onclick="openCardModal('The Iliad')">
+                            <div class="book-info"><div class="book-title">The Iliad</div><div class="book-author">Homer</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/hp.jpg');" onclick="openCardModal('Harry Potter')">
+                            <div class="book-info"><div class="book-title">Harry Potter</div><div class="book-author">J. K. Rowling</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/charlie.jpg');" onclick="openCardModal('Charlie and the Chocolate Factory')">
+                            <div class="book-info"><div class="book-title">Charlie & Chocolate Factory</div><div class="book-author">Roald Dahl</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/love.jpg');" onclick="openCardModal('Love You Forever')">
+                            <div class="book-info"><div class="book-title">Love You Forever</div><div class="book-author">Robert Munsch</div></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" onclick="scrollCarousel('featured', 1)">›</button>
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="section-header">
+                <h2 class="section-title">Popular This Month</h2>
+            </div>
+            <div class="carousel-container">
+                <button class="carousel-nav prev" onclick="scrollCarousel('popular', -1)">‹</button>
+                <div class="carousel-wrapper">
+                    <div class="book-carousel" id="popular-carousel">
+                        <div class="book-card" style="background-image: url('assets/dante.jpg');" onclick="openCardModal('The Divine Comedy')">
+                            <div class="book-info"><div class="book-title">The Divine Comedy</div><div class="book-author">Dante Alighieri</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/invincible.jpeg');" onclick="openCardModal('Invincible Vol. 1')">
+                            <div class="book-info"><div class="book-title">Invincible Vol. 1</div><div class="book-author">Robert Kirkman</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/frank.jpg');" onclick="openCardModal('Frankenstein')">
+                            <div class="book-info"><div class="book-title">Frankenstein</div><div class="book-author">Mary Shelley</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/les.jpg');" onclick="openCardModal('Les Misérables')">
+                            <div class="book-info"><div class="book-title">Les Misérables</div><div class="book-author">Victor Hugo</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/451.jpg');" onclick="openCardModal('Fahrenheit 451')">
+                            <div class="book-info"><div class="book-title">Fahrenheit 451</div><div class="book-author">Ray Bradbury</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/lord.jpg');" onclick="openCardModal('Lord of the Flies')">
+                            <div class="book-info"><div class="book-title">Lord of the Flies</div><div class="book-author">William Golding</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/pnp.jpg');" onclick="openCardModal('Pride and Prejudice')">
+                            <div class="book-info"><div class="book-title">Pride and Prejudice</div><div class="book-author">Jane Austen</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/dune.jpg');" onclick="openCardModal('Dune')">
+                            <div class="book-info"><div class="book-title">Dune</div><div class="book-author">Frank Herbert</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/thg.jpg');" onclick="openCardModal('The Hunger Games')">
+                            <div class="book-info"><div class="book-title">The Hunger Games</div><div class="book-author">Suzanne Collins</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/harper.jpg');" onclick="openCardModal('To Kill A Mockingbird')">
+                            <div class="book-info"><div class="book-title">To Kill A Mockingbird</div><div class="book-author">Harper Lee</div></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" onclick="scrollCarousel('popular', 1)">›</button>
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="section-header">
+                <h2 class="section-title">Romance</h2>
+            </div>
+            <div class="carousel-container">
+                <button class="carousel-nav prev" onclick="scrollCarousel('romance', -1)">‹</button>
+                <div class="carousel-wrapper">
+                    <div class="book-carousel" id="romance-carousel">
+                        <div class="book-card" style="background-image: url('assets/pnp.jpg');" onclick="openCardModal('Pride and Prejudice')">
+                            <div class="book-info"><div class="book-title">Pride and Prejudice</div><div class="book-author">Jane Austen</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/love.jpg');" onclick="openCardModal('Love You Forever')">
+                            <div class="book-info"><div class="book-title">Love You Forever</div><div class="book-author">Robert Munsch</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/tgg.jpg');" onclick="openCardModal('The Great Gatsby')">
+                            <div class="book-info"><div class="book-title">The Great Gatsby</div><div class="book-author">F. Scott Fitzgerald</div></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" onclick="scrollCarousel('romance', 1)">›</button>
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="section-header">
+                <h2 class="section-title">Horror</h2>
+            </div>
+            <div class="carousel-container">
+                <button class="carousel-nav prev" onclick="scrollCarousel('horror', -1)">‹</button>
+                <div class="carousel-wrapper">
+                    <div class="book-carousel" id="horror-carousel">
+                        <div class="book-card" style="background-image: url('assets/frank.jpg');" onclick="openCardModal('Frankenstein')">
+                            <div class="book-info"><div class="book-title">Frankenstein</div><div class="book-author">Mary Shelley</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/dante.jpg');" onclick="openCardModal('The Divine Comedy')">
+                            <div class="book-info"><div class="book-title">The Divine Comedy</div><div class="book-author">Dante Alighieri</div></div>
+                        </div>
+                        <div class="book-card" style="background-image: url('assets/451.jpg');" onclick="openCardModal('Fahrenheit 451')">
+                            <div class="book-info"><div class="book-title">Fahrenheit 451</div><div class="book-author">Ray Bradbury</div></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" onclick="scrollCarousel('horror', 1)">›</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="back-to-top" onclick="scrollToTop()">Back to top ↑</div>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Local Bites</h3>
+                    <p>Discover your next favourite restaurant with a swipe.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">How It Works</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Information</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Local Bites. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

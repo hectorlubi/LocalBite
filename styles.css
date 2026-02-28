@@ -1,0 +1,750 @@
+/* ----- Reset ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar {
+    background: linear-gradient(135deg, #c83525 0%, #df4425 100%);
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    gap: 20px;
+}
+
+.logo a {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    padding: 16px 0;
+    display: block;
+    transition: color 0.2s;
+}
+
+.logo a:hover {
+    color: #ffcdd2;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    max-width: 420px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px 0 0 6px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 18px;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    background: #1a1a2e;
+    color: #fff;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-bar button:hover {
+    background: #2a2a4e;
+}
+
+/* ============================================
+   TINDER HERO SECTION
+   ============================================ */
+.tinder-hero {
+    background: #1a1a2e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tinder-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(200, 53, 37, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 30%, rgba(223, 68, 37, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Hero Header */
+.hero-header {
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #e74c3c;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+}
+
+.hero-header h1 span {
+    color: #fff;
+}
+
+.hero-header p {
+    font-family: 'DM Sans', sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.95rem;
+}
+
+/* Arena layout */
+.tinder-arena {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 700px;
+}
+
+.swipe-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    min-width: 60px;
+}
+
+.swipe-hint.left  { color: rgba(231, 76, 60, 0.65); }
+.swipe-hint.right { color: rgba(46, 204, 113, 0.65); }
+
+.swipe-arrow { font-size: 1.4rem; }
+
+/* Card Stack */
+.card-stack {
+    position: relative;
+    width: 280px;
+    height: 400px;
+    flex-shrink: 0;
+}
+
+/* ---- Individual Tinder Card ---- */
+.tinder-card {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    cursor: grab;
+    user-select: none;
+    overflow: hidden;
+    transition: transform 0.08s ease;
+}
+
+.tinder-card:nth-child(2) { transform: rotate(-3deg) translateY(8px) scale(0.97); z-index: 1; }
+.tinder-card:nth-child(3) { transform: rotate(2deg) translateY(16px) scale(0.94); z-index: 0; }
+.tinder-card.top-card     { z-index: 10; transform: none; }
+.tinder-card.dragging     { cursor: grabbing; transition: none; }
+
+.tinder-card.fly-left {
+    transition: transform 0.5s ease, opacity 0.5s ease !important;
+    transform: translateX(-150%) rotate(-30deg) !important;
+    opacity: 0;
+}
+
+.tinder-card.fly-right {
+    transition: transform 0.5s ease, opacity 0.5s ease !important;
+    transform: translateX(150%) rotate(30deg) !important;
+    opacity: 0;
+}
+
+/* Swipe overlays */
+.swipe-overlay-nope,
+.swipe-overlay-like {
+    position: absolute;
+    top: 20px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    opacity: 0;
+    z-index: 20;
+    pointer-events: none;
+    border: 3px solid;
+    transition: opacity 0.1s;
+}
+
+.swipe-overlay-nope { left: 20px;  color: #e74c3c; border-color: #e74c3c; }
+.swipe-overlay-like { right: 20px; color: #2ecc71; border-color: #2ecc71; }
+
+/* ---- Card Front ---- */
+.card-front {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image area */
+.card-images {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-image.active { opacity: 1; }
+
+/* Image dots — positioned at BOTTOM of image area */
+.image-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    z-index: 5;
+    padding: 0 16px;
+}
+
+.image-dot {
+    height: 3px;
+    flex: 1;
+    max-width: 40px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    transition: background 0.3s;
+}
+
+.image-dot.active { background: #fff; }
+
+.image-click-zones {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 6;
+}
+
+.image-click-zone {
+    flex: 1;
+    cursor: pointer;
+}
+
+/* Card info bar — name only, clickable to open modal */
+.card-info-bar {
+    padding: 12px 16px 10px;
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-book-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.info-tap-hint {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    color: #000000;
+    white-space: nowrap;
+}
+
+/* Action buttons — filled, spaced out */
+.card-actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 24px 16px;
+    background: #fff;
+}
+
+.action-btn-tinder {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    transition: transform 0.15s, box-shadow 0.15s;
+    color: #111;
+    line-height: 1;
+}
+
+.action-btn-tinder:hover {
+    transform: scale(1.12);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
+
+.btn-nope { background: #e74c3c; }
+.btn-like { background: #2ecc71; }
+
+/* ============================================
+   CARD INFO MODAL  (replaces flip)
+   ============================================ */
+.card-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card-modal-overlay.active {
+    display: flex;
+}
+
+.card-modal {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 340px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+    position: relative;
+}
+
+.card-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    font-size: 1.4rem;
+    color: #fff;
+    cursor: pointer;
+    line-height: 1;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: background 0.2s;
+}
+
+.card-modal-close:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.card-modal-header {
+    padding: 20px 20px 16px;
+    background: linear-gradient(135deg, #c83525, #df4425);
+    flex-shrink: 0;
+}
+
+.card-modal-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+}
+
+.card-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-modal-body::-webkit-scrollbar       { width: 5px; }
+.card-modal-body::-webkit-scrollbar-track { background: #f5f5f5; }
+.card-modal-body::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+
+/* Info rows inside modal */
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.info-icon {
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.info-label {
+    font-size: 0.68rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin-bottom: 1px;
+}
+
+.info-value {
+    font-size: 0.85rem;
+    color: #333;
+    line-height: 1.45;
+}
+
+.info-value a {
+    color: #c83525;
+    text-decoration: none;
+}
+
+.info-value a:hover { text-decoration: underline; }
+
+/* Map placeholder inside modal */
+.map-placeholder {
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(200, 200, 200, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 200, 200, 0.5) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.map-pin {
+    font-size: 2rem;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Hide swipe hints when deck is exhausted */
+.tinder-arena.hidden {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Empty state */
+.tinder-empty {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.tinder-empty.visible { display: flex; }
+
+.empty-emoji { font-size: 3rem; }
+
+.empty-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.empty-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.refresh-btn {
+    margin-top: 8px;
+    padding: 10px 28px;
+    background: #c83525;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.refresh-btn:hover {
+    background: #df4425;
+    transform: scale(1.05);
+}
+
+/* ============================================
+   MAIN CONTENT & CAROUSELS  (original OoberBooks styles)
+   ============================================ */
+.main-content {
+    padding: 10px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 80px);
+}
+
+.book-section {
+    padding: 40px 0;
+    margin-bottom: 30px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.carousel-container {
+    position: relative;
+    padding: 0 60px;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.book-carousel {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: 15px;
+}
+
+.book-card {
+    flex: 0 0 140px;
+    height: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.book-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.book-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    color: white;
+    padding: 80px 10px 10px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.book-card:hover .book-info {
+    opacity: 1;
+}
+
+.book-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.book-author {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.carousel-nav:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav.prev {
+    left: 10px;
+}
+
+.carousel-nav.next {
+    right: 10px;
+}
+
+.carousel-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    background: #1a1a2e;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 40px 0 20px;
+}
+
+.back-to-top {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    opacity: 0.55;
+    transition: opacity 0.2s;
+}
+
+.back-to-top:hover { opacity: 1; }
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-content {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-section { flex: 1; min-width: 160px; }
+
+.footer-section h3 {
+    font-family: 'Syne', sans-serif;
+    color: #fff;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.footer-section p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-section ul a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: color 0.2s;
+}
+
+.footer-section ul a:hover { color: #fff; }
+
+.footer-bottom {
+    padding-top: 16px;
+    text-align: center;
+    font-size: 0.78rem;
+    opacity: 0.45;
+}
