@@ -8,7 +8,7 @@ const restaurants = [
     price: "$$",
     rating: 4.6,
     distanceKm: 3.1,
-    photos: ["assets/nuburger.jpg"],
+    photos: ["assets/nu1.jpg", "assets/nu2.jpg", "assets/nu3.jpg"],
     contact: "(204) 306-8600",
     address: "472 Stradbrook Ave, Winnipeg, MB",
     hours: "Mon–Sun 11am–9pm",
@@ -20,7 +20,7 @@ const restaurants = [
     price: "$",
     rating: 4.7,
     distanceKm: 4.0,
-    photos: ["assets/burger-place.jpg"],
+    photos: ["assets/bp1.jpg", "assets/bp2.jpg", "assets/bp3.jpg"],
     contact: "(204) 775-3905",
     address: "1909 Portage Ave, Winnipeg, MB",
     hours: "Mon–Sat 11am–8pm",
@@ -32,7 +32,7 @@ const restaurants = [
     price: "$",
     rating: 4.5,
     distanceKm: 3.7,
-    photos: ["assets/superboys.jpg"],
+    photos: ["assets/sb1.jpg", "assets/sb2.jpg", "assets/sb3.jpg"],
     contact: "(204) 775-1461",
     address: "1485 Main St, Winnipeg, MB",
     hours: "Mon–Sat 11am–10pm",
@@ -46,7 +46,7 @@ const restaurants = [
     price: "$$",
     rating: 4.5,
     distanceKm: 2.6,
-    photos: ["assets/santa-lucia.jpg"],
+    photos: ["assets/sl1.jpg", "assets/sl2.jpg", "assets/sl3.jpg"],
     contact: "(204) 947-8884",
     address: "4 St Mary's Rd, Winnipeg, MB",
     hours: "Daily 11am–11pm",
@@ -58,7 +58,7 @@ const restaurants = [
     price: "$",
     rating: 4.6,
     distanceKm: 2.3,
-    photos: ["assets/wall-street-slice.jpg"],
+    photos: ["assets/ws1.jpg", "assets/ws2.jpg", "assets/ws3.jpg"],
     contact: "(204) 615-9400",
     address: "314 Wall St, Winnipeg, MB",
     hours: "Tue–Sun 4pm–10pm",
@@ -70,7 +70,7 @@ const restaurants = [
     price: "$",
     rating: 4.2,
     distanceKm: 1.9,
-    photos: ["assets/little-pizza-heaven.jpg"],
+    photos: ["assets/lp1.jpg", "assets/lp2.jpg", "assets/lp3.jpg"],
     contact: "(204) 949-1277",
     address: "111 Osborne St, Winnipeg, MB",
     hours: "Daily 11am–12am",
@@ -84,7 +84,7 @@ const restaurants = [
     price: "$",
     rating: 4.8,
     distanceKm: 2.8,
-    photos: ["assets/baraka.jpg"],
+    photos: ["assets/ba1.jpg", "assets/ba2.jpg", "assets/ba3.jpg"],
     contact: "(204) 219-4445",
     address: "1780 Main St, Winnipeg, MB",
     hours: "Mon–Sat 10am–7pm",
@@ -96,7 +96,7 @@ const restaurants = [
     price: "$$",
     rating: 4.7,
     distanceKm: 3.5,
-    photos: ["assets/ramallah.jpg"],
+    photos: ["assets/ra1.jpg", "assets/ra2.jpg", "assets/ra3.jpg"],
     contact: "(204) 415-3999",
     address: "325 Pembina Hwy, Winnipeg, MB",
     hours: "Daily 11am–10pm",
@@ -110,7 +110,7 @@ const restaurants = [
     price: "$$",
     rating: 4.4,
     distanceKm: 3.3,
-    photos: ["assets/sun-fortune.jpg"],
+    photos: ["assets/sf1.jpg", "assets/sf2.jpg", "assets/sf3.jpg"],
     contact: "(204) 943-6890",
     address: "223 King St, Winnipeg, MB",
     hours: "Daily 10am–9pm",
@@ -122,7 +122,7 @@ const restaurants = [
     price: "$$",
     rating: 4.3,
     distanceKm: 4.1,
-    photos: ["assets/golden-loong.jpg"],
+    photos: ["assets/gl1.jpg", "assets/gl2.jpg", "assets/gl3.jpg"],
     contact: "(204) 772-8703",
     address: "2145 Portage Ave, Winnipeg, MB",
     hours: "Tue–Sun 11am–9pm",
@@ -136,7 +136,7 @@ const restaurants = [
     price: "$$$",
     rating: 4.8,
     distanceKm: 3.6,
-    photos: ["assets/yujiro.jpg"],
+    photos: ["assets/yu1.jpg", "assets/yu2.jpg", "assets/yu3.jpg"],
     contact: "(204) 415-9588",
     address: "1822 Grant Ave, Winnipeg, MB",
     hours: "Tue–Sat 5pm–10pm",
@@ -148,7 +148,7 @@ const restaurants = [
     price: "$$",
     rating: 4.6,
     distanceKm: 2.9,
-    photos: ["assets/blufish.jpg"],
+    photos: ["assets/bf1.jpg", "assets/bf2.jpg", "assets/bf3.jpg"],
     contact: "(204) 415-7555",
     address: "179 Bannatyne Ave, Winnipeg, MB",
     hours: "Mon–Sat 11:30am–9pm",
@@ -160,7 +160,7 @@ const restaurants = [
     price: "$$",
     rating: 4.5,
     distanceKm: 5.2,
-    photos: ["assets/kai-sushi.jpg"],
+    photos: ["assets/ks1.jpg", "assets/ks2.jpg", "assets/ks3.jpg"],
     contact: "(204) 254-8881",
     address: "680 Elizabeth Rd, Winnipeg, MB",
     hours: "Daily 11am–11pm",
@@ -174,7 +174,7 @@ const restaurants = [
     price: "$",
     rating: 4.2,
     distanceKm: 1.1,
-    photos: ["assets/dq.jpg"],
+    photos: ["assets/dq1.jpg", "assets/dq2.jpg", "assets/dq3.jpg"],
     contact: "(204) 774-4849",
     address: "981 Portage Ave, Winnipeg, MB",
     hours: "Daily 10am–10pm",
@@ -186,7 +186,7 @@ const restaurants = [
     price: "$$",
     rating: 4.4,
     distanceKm: 2.5,
-    photos: ["assets/five-guys.jpg"],
+    photos: ["assets/fg1.jpg", "assets/fg2.jpg", "assets/fg3.jpg"],
     contact: "(204) 691-5555",
     address: "1485 Portage Ave, Winnipeg, MB",
     hours: "Daily 11am–10pm",
@@ -200,7 +200,7 @@ const restaurants = [
     price: "$$",
     rating: 4.7,
     distanceKm: 3.0,
-    photos: ["assets/roughage.jpg"],
+    photos: ["assets/re1.jpg", "assets/re2.jpg", "assets/re3.jpg"],
     contact: "(204) 219-7222",
     address: "633 Corydon Ave, Winnipeg, MB",
     hours: "Wed–Sun 11am–9pm",
@@ -212,7 +212,7 @@ const restaurants = [
     price: "$$",
     rating: 4.6,
     distanceKm: 3.9,
-    photos: ["assets/affinity.jpg"],
+    photos: ["assets/av1.jpg", "assets/av2.jpg", "assets/av3.jpg"],
     contact: "(204) 947-1987",
     address: "389 Portage Ave, Winnipeg, MB",
     hours: "Mon–Sat 11am–8pm",
@@ -226,7 +226,7 @@ const restaurants = [
     price: "$$",
     rating: 4.8,
     distanceKm: 2.4,
-    photos: ["assets/chaeban.jpg"],
+    photos: ["assets/ci1.jpg", "assets/ci2.jpg", "assets/ci3.jpg"],
     contact: "(204) 219-5111",
     address: "390 Osborne St, Winnipeg, MB",
     hours: "Daily 12pm–10pm",
@@ -238,7 +238,7 @@ const restaurants = [
     price: "$$",
     rating: 4.7,
     distanceKm: 1.8,
-    photos: ["assets/fete.jpg"],
+    photos: ["assets/fe1.jpg", "assets/fe2.jpg", "assets/fe3.jpg"],
     contact: "(204) 219-5199",
     address: "300 Assiniboine Ave, Winnipeg, MB",
     hours: "Daily 12pm–9pm",
@@ -252,7 +252,7 @@ const restaurants = [
     price: "$$$",
     rating: 4.6,
     distanceKm: 2.7,
-    photos: ["assets/east-india.jpg"],
+    photos: ["assets/ei1.jpg", "assets/ei2.jpg", "assets/ei3.jpg"],
     contact: "(204) 947-3097",
     address: "349 York Ave, Winnipeg, MB",
     hours: "Daily 11:30am–9:30pm",
@@ -264,7 +264,7 @@ const restaurants = [
     price: "$$",
     rating: 4.5,
     distanceKm: 2.1,
-    photos: ["assets/clay-oven.jpg"],
+    photos: ["assets/co1.jpg", "assets/co2.jpg", "assets/co3.jpg"],
     contact: "(204) 942-3900",
     address: "1824 Pembina Hwy, Winnipeg, MB",
     hours: "Daily 11am–10pm",
@@ -278,7 +278,7 @@ const restaurants = [
     price: "$$",
     rating: 4.7,
     distanceKm: 1.6,
-    photos: ["assets/little-sister.jpg"],
+    photos: ["assets/ls1.jpg", "assets/ls2.jpg", "assets/ls3.jpg"],
     contact: "(204) 691-0101",
     address: "366 Osborne St, Winnipeg, MB",
     hours: "Daily 7am–5pm",
@@ -290,7 +290,7 @@ const restaurants = [
     price: "$$",
     rating: 4.6,
     distanceKm: 2.2,
-    photos: ["assets/thom-bargen.jpg"],
+    photos: ["assets/tb1.jpg", "assets/tb2.jpg", "assets/tb3.jpg"],
     contact: "(204) 421-4184",
     address: "250 Kennedy St, Winnipeg, MB",
     hours: "Daily 7am–6pm",
@@ -304,7 +304,7 @@ const restaurants = [
     price: "$",
     rating: 4.6,
     distanceKm: 3.4,
-    photos: ["assets/pho-hoang.jpg"],
+    photos: ["assets/ph1.jpg", "assets/ph2.jpg", "assets/ph3.jpg"],
     contact: "(204) 772-4088",
     address: "794 Sargent Ave, Winnipeg, MB",
     hours: "Daily 10am–9pm",
@@ -316,7 +316,7 @@ const restaurants = [
     price: "$$",
     rating: 4.5,
     distanceKm: 2.7,
-    photos: ["assets/magic-thailand.jpg"],
+    photos: ["assets/mt1.jpg", "assets/mt2.jpg", "assets/mt3.jpg"],
     contact: "(204) 284-0411",
     address: "844 Logan Ave, Winnipeg, MB",
     hours: "Tue–Sun 11am–9pm",
@@ -328,7 +328,7 @@ const restaurants = [
     price: "$$$",
     rating: 4.7,
     distanceKm: 1.4,
-    photos: ["assets/deer-almond.jpg"],
+    photos: ["assets/da1.jpg", "assets/da2.jpg", "assets/da3.jpg"],
     contact: "(204) 504-8562",
     address: "85 Princess St, Winnipeg, MB",
     hours: "Tue–Sat 5pm–10pm",
@@ -363,22 +363,45 @@ const history = [];
 /*-------------CARD BUILDER-----------*/
 // Builds the full HTML string for a single restaurant card (front + back faces)
 function buildCard(r, layerClass, cardIndex) {
-  const hero = r.photos?.[0] || "";
+  const photos = r.photos?.length ? r.photos : [""];
   // Build tag chip HTML for the front face
   const tagsHtml = r.tags.map(t =>
     `<span class="chip tag-chip">${t}</span>`
   ).join("");
 
+  // Build photo slide divs — one per photo, first is active
+  const slidesHtml = photos.map((src, i) =>
+    `<div class="photo-slide${i === 0 ? " active" : ""}" style="background-image:url('${src}')"></div>`
+  ).join("");
+
+  // Build dot indicators — only rendered when there are multiple photos
+  const dotsHtml = photos.length > 1
+    ? `<div class="photo-dots">${photos.map((_, i) =>
+        `<span class="photo-dot${i === 0 ? " active" : ""}"></span>`
+      ).join("")}</div>`
+    : "";
+
   return `
-    <article class="card ${layerClass}" data-index="${cardIndex}">
+    <article class="card ${layerClass}" data-index="${cardIndex}" data-photo-index="0" data-photo-count="${photos.length}">
       <div class="card-inner">
 
-        <!-- Front face: photo, name, rating, and tags -->
+        <!-- Front face: photo carousel, name, rating, and tags -->
         <div class="card-face card-front">
-          <div class="photo" style="background-image:url('${hero}')"></div>
-          <div class="fade"></div>
+
+          <!-- Photo carousel — tap zones live inside so they're bounded by carousel height -->
+          <div class="photo-carousel">
+            ${slidesHtml}
+            <!-- Left half = prev photo, right half = next photo -->
+            <div class="photo-tap-prev" data-card-index="${cardIndex}"></div>
+            <div class="photo-tap-next" data-card-index="${cardIndex}"></div>
+            <!-- Dot indicators at the bottom of the carousel -->
+            ${dotsHtml}
+          </div>
+
           <div class="badge like">LIKE</div>
           <div class="badge nope">NOPE</div>
+
+          <!-- Solid info panel at the bottom -->
           <div class="info">
             <div class="title-row">
               <div class="name">${escapeHtml(r.name)}</div>
@@ -389,7 +412,7 @@ function buildCard(r, layerClass, cardIndex) {
               <span class="chip">${r.distanceKm} km</span>
             </div>
             <div class="sub tags-row">${tagsHtml}</div>
-            <div class="tap-hint">Tap for details</div>
+            <div class="tap-hint">Tap here for details - Tap photo to cycle</div>
           </div>
         </div>
 
@@ -645,18 +668,61 @@ function toggleFilterMenu() {
 
 
 /*-------------CARD INTERACTIONS-----------*/
-// Attaches a click listener to the top card to toggle the front/back flip
+// Attaches photo-cycle tap zones and the flip click listener to the top card
 function initFlip() {
   const top = document.querySelector(".card.top");
   if (!top || chosenRestaurant) return;
 
-  top.addEventListener("click", function (e) {
-    if (isAnimating) return;
-    if (e.target.closest("a")) return; // Don't flip when clicking a link
-    // Ignore clicks that were actually drag releases
-    if (top.dataset.dragged === "true") { top.dataset.dragged = "false"; return; }
-    top.classList.toggle("flipped");
-  });
+  // Photo prev/next tap zones (inside the carousel)
+  const prevZone = top.querySelector(".photo-tap-prev");
+  const nextZone = top.querySelector(".photo-tap-next");
+
+  if (prevZone) {
+    prevZone.addEventListener("click", (e) => {
+      if (top.dataset.dragged === "true") return;
+      cyclePhoto(top, -1);
+    });
+  }
+  if (nextZone) {
+    nextZone.addEventListener("click", (e) => {
+      if (top.dataset.dragged === "true") return;
+      cyclePhoto(top, 1);
+    });
+  }
+
+  // Flip only when tapping the info panel at the bottom
+  const infoPanel = top.querySelector(".info");
+  if (infoPanel) {
+    infoPanel.addEventListener("click", function (e) {
+      if (isAnimating) return;
+      if (e.target.closest("a")) return;
+      if (top.dataset.dragged === "true") { top.dataset.dragged = "false"; return; }
+      top.classList.toggle("flipped");
+    });
+  }
+}
+
+// Advances or reverses the photo carousel on a card by one step
+function cyclePhoto(card, direction) {
+  const count = parseInt(card.dataset.photoCount, 10) || 1;
+  if (count <= 1) return;
+
+  let current = parseInt(card.dataset.photoIndex, 10) || 0;
+  const next = (current + direction + count) % count;
+
+  // Swap active slide
+  const slides = card.querySelectorAll(".photo-slide");
+  slides[current].classList.remove("active");
+  slides[next].classList.add("active");
+
+  // Swap active dot
+  const dots = card.querySelectorAll(".photo-dot");
+  if (dots.length) {
+    dots[current].classList.remove("active");
+    dots[next].classList.add("active");
+  }
+
+  card.dataset.photoIndex = next;
 }
 
 // Attaches touch and mouse drag listeners to the top card for swipe gestures
