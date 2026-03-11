@@ -5,113 +5,187 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Local Bites</title>
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+    <!-- Navbar/Topbar  -->
   <header class="topbar">
-    <button class="icon-btn" aria-label="toggle">
-      <i class="fa-solid fa-toggle-off icon"></i>
-    </button>
 
+    <!-- Group Mode Toggle -->
+    <div class="group-toggle-wrap">
+
+      <!-- Toggle button switches between solo and group swiping mode -->
+      <button class="icon-btn group-toggle-btn" id="groupToggleBtn" aria-label="Toggle group mode" onclick="toggleGroupMode()">
+        <i class="fa-solid fa-toggle-off icon" id="groupToggleIcon"></i>
+      </button>
+
+      <!-- Shows current number of group members -->
+      <div class="group-status" id="groupStatus">
+        <svg class="member-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="8" r="4" stroke="rgba(255,255,255,0.75)" stroke-width="1.5"/>
+          <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="group-count" id="groupCount">1</span>
+      </div>
+    </div>
+
+    <!-- Brand Name -->
     <div class="brand">
       <div class="brand-name">Local <span>Bites</span></div>
     </div>
 
+    <!-- Filter Menu -->
     <div class="filter-menu-wrap">
+      <!-- Filter toggle button -->
       <button class="icon-btn" aria-label="Filters" onclick="toggleFilterMenu()">
-       <i class="fa-solid fa-filter icon"></i>
+        <i class="fa-solid fa-filter icon"></i>
       </button>
 
+      <!-- Dropdown filter panel -->
       <div class="filter-menu" id="filterMenu">
+
+        <!-- Distance Slider -->
         <div class="filter-group">
-          <label for="distanceFilter">Distance</label>
-          <select id="distanceFilter" onchange="applyFilters()">
-            <option value="all">All distances</option>
-            <option value="2">Within 2 km</option>
-            <option value="5">Within 5 km</option>
-            <option value="10">Within 10 km</option>
-          </select>
+          <label for="distanceFilter">Distance <span class="distance-label" id="distanceLabel">Any distance</span></label>
+          <input type="range" id="distanceFilter" min="0" max="50" value="50" step="1" oninput="updateDistanceLabel(this.value)" onchange="applyFilters()" class="distance-slider" />
+          <!-- Tick labels for slider -->
+          <div class="slider-ticks">
+            <span>0 km</span>
+            <span>25 km</span>
+            <span>50 km</span>
+          </div>
         </div>
 
+        <!-- Filter -->
         <div class="filter-group">
-          <label for="cuisineFilter">Cuisine</label>
-          <select id="cuisineFilter" onchange="applyFilters()">
-            <option value="all">All cuisines</option>
-            <option value="Fusion">Fusion</option>
-            <option value="Comfort">Comfort</option>
-            <option value="Steakhouse">Steakhouse</option>
-            <option value="Brunch">Brunch</option>
-          </select>
+          <label>Cuisine / Type</label>
+          <!-- Tag buttons -->
+          <div class="tag-filter-container" id="tagFilterContainer"></div>
         </div>
 
+        <!-- Reset Filters Button -->
         <button class="pill pill-strong filter-reset-btn" onclick="resetFilters()">Reset Filters</button>
       </div>
     </div>
   </header>
 
+
+    <!-- Main App  -->
   <main class="app">
+
+    <!-- Card Deck Section -->
     <section class="deck-wrap">
+
+      <!-- Swipeable restaurant card stack -->
       <div class="deck" id="cardStack"></div>
+
+
+        <!-- Chosen Restaurant  -->
       <div id="chosenOverlay" class="chosen-overlay">
-  <div class="chosen-overlay-card">
-    <div class="chosen-banner" id="chosenTitle"></div>
+        <div class="chosen-overlay-card">
 
-    <div class="back-content">
-      <div class="back-title" id="chosenName"></div>
-      <div class="back-sub" id="chosenSub"></div>
+          <!-- Restaurant name/confirmation message -->
+          <div class="chosen-banner" id="chosenTitle"></div>
 
-      <div class="back-section">
-        <div class="back-label">Contact</div>
-        <div class="back-value" id="chosenContact"></div>
+          <!-- Restaurant detail content -->
+          <div class="back-content">
+            <div class="back-title" id="chosenName"></div>
+            <div class="back-sub" id="chosenSub"></div>
+
+            <!-- Cuisine tags -->
+            <div class="back-tags" id="chosenTags"></div>
+
+            <!-- Contact Info -->
+            <div class="back-section">
+              <div class="back-label">Contact</div>
+              <div class="back-value" id="chosenContact"></div>
+            </div>
+
+            <!-- Address -->
+            <div class="back-section">
+              <div class="back-label">Address</div>
+              <div class="back-value" id="chosenAddress"></div>
+            </div>
+
+            <!-- Hours -->
+            <div class="back-section">
+              <div class="back-label">Hours</div>
+              <div class="back-value" id="chosenHours"></div>
+            </div>
+
+            <!-- Website -->
+            <div class="back-section">
+              <div class="back-label">Website</div>
+              <div class="back-value" id="chosenWebsite"></div>
+            </div>
+
+            <!-- Hint to user on how to go back -->
+            <div class="tap-hint back-hint">Undo to go back</div>
+          </div>
+
+        </div>
       </div>
 
-      <div class="back-section">
-        <div class="back-label">Address</div>
-        <div class="back-value" id="chosenAddress"></div>
-      </div>
 
-      <div class="back-section">
-        <div class="back-label">Hours</div>
-        <div class="back-value" id="chosenHours"></div>
-      </div>
-
-      <div class="back-section">
-        <div class="back-label">Website</div>
-        <div class="back-value" id="chosenWebsite"></div>
-      </div>
-
-      <div class="tap-hint back-hint">Undo to go back</div>
-    </div>
-  </div>
-</div>
+        <!-- Empty state (no more cards) -->
       <div class="empty" id="emptyState">
         <div class="empty-title">No more restaurants</div>
         <div class="empty-sub">You swiped through everything in this deck.</div>
         <button class="pill pill-strong" onclick="resetDeck()">Start Over</button>
       </div>
+
     </section>
 
+
+      <!-- Action Buttons  -->
     <nav class="actions" aria-label="Swipe actions">
+      <!-- Undo -->
       <button id="undoBtn" class="action action-rewind" onclick="undoLastSwipe()" title="Undo">
-  <i class="fa-solid fa-rotate-left action-ic"></i>
-</button>
+        <i class="fa-solid fa-rotate-left action-ic"></i>
+      </button>
 
-<button id="passBtn" class="action action-nope" onclick="swipe(false)" title="Pass">
-  <i class="fa-solid fa-xmark action-ic"></i>
-</button>
+      <!-- Pass/Dislike -->
+      <button id="passBtn" class="action action-nope" onclick="swipe(false)" title="Pass">
+        <i class="fa-solid fa-xmark action-ic"></i>
+      </button>
 
-<button id="likeBtn" class="action action-like" onclick="swipe(true)" title="Like">
-  <i class="fa-solid fa-heart action-ic"></i>
-</button>
+      <!-- Like/Choose -->
+      <button id="likeBtn" class="action action-like" onclick="swipe(true)" title="Like">
+        <i class="fa-solid fa-heart action-ic"></i>
+      </button>
     </nav>
+
   </main>
+
+
+    <!-- Group Vote Popup  -->
+  <div class="group-popup" id="groupPopup">
+    <div class="group-popup-inner">
+
+      <!-- Visual vote summary -->
+      <div class="group-popup-votes" id="groupPopupVotes"></div>
+
+      <!-- Result message -->
+      <div class="group-popup-msg" id="groupPopupMsg"></div>
+
+      <!-- Dismiss button -->
+      <button class="group-popup-btn" id="groupPopupBtn" onclick="dismissGroupPopup()">Continue</button>
+    </div>
+  </div>
 
   <div class="toast" id="toast"></div>
 
+
+  <!-- script.js  -->
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+/*-------------BASE STYLES-----------*/
 * {
   margin: 0;
   padding: 0;
@@ -20,7 +21,8 @@ body {
   overflow: hidden;
 }
 
-/* Top bar */
+
+/*-------------TOPBAR-----------*/
 .topbar {
   position: sticky;
   top: 0;
@@ -51,6 +53,7 @@ body {
   color: rgba(255,255,255,0.9);
 }
 
+/*-------------LOGO-----------*/
 .brand {
   display: flex;
   align-items: center;
@@ -69,7 +72,8 @@ body {
   color: #ff5a5f;
 }
 
-/* Filter menu */
+
+/*-------------FILTER MENU-----------*/
 .filter-menu-wrap {
   position: relative;
 }
@@ -90,6 +94,10 @@ body {
 
 .filter-menu.show {
   display: block;
+}
+
+.filter-menu {
+  width: 280px !important;
 }
 
 .filter-group {
@@ -117,7 +125,12 @@ body {
   font-size: 14px;
 }
 
+.filter-group option {
+  color: black;
+}
+
 .filter-reset-btn, .pill {
+  font-family: "DM Sans", sans-serif;
   width: 100%;
   margin-top: 4px;
   background-color: rgba(255,255,255,0.08);
@@ -137,11 +150,99 @@ body {
   background-color: white;
 }
 
-.filter-group option {
-  color: black;
+
+/*-------------TAG FILTER BUTTONS-----------*/
+.tag-filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
 }
 
-/* App layout */
+.tag-filter-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.75);
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-transform: capitalize;
+}
+
+.tag-filter-btn:hover {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.95);
+}
+
+.tag-filter-btn.active {
+  background: #ff5a5f;
+  border-color: #ff5a5f;
+  color: #fff;
+  font-weight: 600;
+}
+
+
+/*-------------DISTANCE SLIDER-----------*/
+.distance-label {
+  color: #ff5a5f;
+  font-weight: 700;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+.distance-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #ff5a5f 0%, #ff5a5f var(--val, 100%), rgba(255,255,255,0.15) var(--val, 100%));
+  outline: none;
+  cursor: pointer;
+  margin: 6px 0 2px;
+  border: none;
+}
+
+.distance-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.distance-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.distance-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  cursor: pointer;
+}
+
+.slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+
+
+/*-------------APP LAYOUT-----------*/
 .app {
   max-width: 460px;
   height: calc(100vh - 60px);
@@ -153,7 +254,8 @@ body {
   overflow: hidden;
 }
 
-/* Deck */
+
+/*-------------DECK-----------*/
 .deck-wrap {
   position: relative;
   height: 100%;
@@ -167,7 +269,8 @@ body {
   height: 100%;
 }
 
-/* Card shell */
+
+/*-------------CARD SHELL-----------*/
 .card {
   position: absolute;
   inset: 0;
@@ -189,7 +292,8 @@ body {
   transition: transform 160ms ease;
 }
 
-/* Flip structure */
+
+/*-------------CARD FLIP-----------*/
 .card-inner {
   position: relative;
   width: 100%;
@@ -227,7 +331,8 @@ body {
   justify-content: center;
 }
 
-/* Front */
+
+/*-------------CARD FRONT-----------*/
 .photo {
   position: absolute;
   inset: 0;
@@ -326,7 +431,8 @@ body {
   font-weight: 600;
 }
 
-/* Back / overlay shared styles */
+
+/*-------------CARD BACK-----------*/
 .back-content {
   display: flex;
   flex-direction: column;
@@ -384,7 +490,41 @@ body {
   margin-top: 4px;
 }
 
-/* Stack layering */
+
+/*-------------TAG CHIPS-----------*/
+.tags-row {
+  margin-top: -4px;
+}
+
+.tag-chip {
+  font-size: 11px !important;
+  padding: 4px 8px !important;
+  background: rgba(255, 90, 95, 0.18) !important;
+  border-color: rgba(255, 90, 95, 0.35) !important;
+  color: rgba(255,200,200,0.92) !important;
+  text-transform: capitalize;
+}
+
+.back-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 2px;
+}
+
+.back-tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 90, 95, 0.18);
+  border: 1px solid rgba(255, 90, 95, 0.35);
+  color: rgba(255,200,200,0.92);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+
+/*-------------STACK LAYERING-----------*/
 .card.layer-1 {
   transform: scale(0.97) translateY(10px);
 }
@@ -397,6 +537,8 @@ body {
   z-index: 10;
 }
 
+
+/*-------------CHOSEN BANNER-----------*/
 .chosen-banner {
   display: block;
   margin-bottom: 10px;
@@ -416,7 +558,9 @@ body {
   display: none;
 }
 
-/* Confirmation Overlay */
+
+/*-------------CHOSEN OVERLAY-----------*/
+/* Full-deck overlay shown after a restaurant is liked */
 .chosen-overlay {
   position: absolute;
   inset: 0;
@@ -430,6 +574,7 @@ body {
   display: block;
 }
 
+/* Inner card face */
 .chosen-overlay-card {
   position: absolute;
   inset: 0;
@@ -444,20 +589,25 @@ body {
   justify-content: center;
 }
 
-/* Swipe animations */
+
+/*-------------SWIPE ANIMATIONS-----------*/
+
+/* Card flying off to the left (pass) */
 .card.fly-left {
   transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease !important;
   transform: translateX(-150%) rotate(-28deg) !important;
   opacity: 0;
 }
 
+/* Card flying off to the right (like) */
 .card.fly-right {
   transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease !important;
   transform: translateX(150%) rotate(28deg) !important;
   opacity: 0;
 }
 
-/* Empty state */
+
+/*-------------EMPTY STATE-----------*/
 .empty {
   position: absolute;
   inset: 0;
@@ -485,7 +635,8 @@ body {
   font-size: 14px;
 }
 
-/* Action bar */
+
+/*-------------ACTION BUTTONS-----------*/
 .actions {
   height: 72px;
   display: flex;
@@ -495,6 +646,7 @@ body {
   padding: 0;
 }
 
+/* Shared button base */
 .action {
   width: 58px;
   height: 58px;
@@ -517,17 +669,10 @@ body {
   box-shadow: 0 12px 30px rgba(0,0,0,0.35);
 }
 
-.action-nope {
-  color: #ff4d4d;
-}
-
-.action-like {
-  color: #2ecc71;
-}
-
-.action-rewind {
-  color: #f5c542;
-}
+/* Icon colour per action type */
+.action-nope   { color: #ff4d4d; }
+.action-like   { color: #2ecc71; }
+.action-rewind { color: #f5c542; }
 
 .action-ic {
   font-size: 26px;
@@ -535,6 +680,7 @@ body {
   display: block;
 }
 
+/* Applied when a restaurant has been chosen */
 .disabled-action {
   opacity: 0.35;
   filter: grayscale(1);
@@ -542,7 +688,6 @@ body {
   box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
 
-/* Toast */
 .toast {
   position: fixed;
   left: 50%;
@@ -560,4 +705,181 @@ body {
 
 .toast.show {
   display: block;
+}
+
+
+/*-------------GROUP MODE TOGGLE-----------*/
+/* Left side of topbar — toggle button + member count */
+.group-toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.group-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Person icon beside the member count */
+.member-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  opacity: 1;
+}
+
+.group-count {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  color: rgba(255,255,255,1);
+  width: 14px;
+  text-align: left;
+}
+
+/* When group mode is active — icon turns red */
+.group-toggle-btn.active .icon {
+  color: #ff5a5f;
+}
+
+/*-------------GROUP VOTE POPUP-----------*/
+.group-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 24px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.group-popup.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+/* Inner panel card */
+.group-popup-inner {
+  width: calc(100% - 28px);
+  max-width: 432px;
+  background: rgba(18, 21, 42, 0.98);
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 22px;
+  padding: 18px 18px 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.group-popup-votes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Individual member vote chip */
+.vote-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 6px 8px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: "DM Sans", sans-serif;
+}
+
+/* Green tint for yes votes */
+.vote-chip.yes {
+  background: rgba(25, 211, 110, 0.15);
+  border: 1px solid rgba(25, 211, 110, 0.35);
+  color: #19d36e;
+}
+
+/* Red tint for no votes */
+.vote-chip.no {
+  background: rgba(255, 90, 95, 0.15);
+  border: 1px solid rgba(255, 90, 95, 0.35);
+  color: #ff5a5f;
+}
+
+/* Letter avatar circle inside each vote chip */
+.vote-chip .vote-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.vote-chip.yes .vote-avatar {
+  background: #19d36e;
+  color: #0a2e1a;
+}
+
+.vote-chip.no .vote-avatar {
+  background: #ff5a5f;
+  color: #2e0a0b;
+}
+
+/* Result message */
+.group-popup-msg {
+  font-family: "Syne", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.3;
+}
+
+/* Consensus message */
+.group-popup-msg.consensus {
+  color: #19d36e;
+}
+
+/* Dimmed for "keep swiping" or pass messages */
+.group-popup-msg.no-consensus {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Continue dismiss button */
+.group-popup-btn {
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.9);
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.group-popup-btn:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+/* Green variant for the consensus button */
+.group-popup-btn.consensus-btn {
+  background: rgba(25, 211, 110, 0.18);
+  color: #19d36e;
+  border: 1px solid rgba(25, 211, 110, 0.35);
+}
+
+.group-popup-btn.consensus-btn:hover {
+  background: rgba(25, 211, 110, 0.28);
 }
