@@ -106,7 +106,7 @@ const restaurants = [
   // CHINESE
   {
     name: "Sun Fortune Restaurant",
-    tags: ["chinese"],
+    tags: ["chinese", "vegan"],
     price: "$$",
     rating: 4.4,
     distanceKm: 3.3,
