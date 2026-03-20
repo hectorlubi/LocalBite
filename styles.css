@@ -4,12 +4,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+ 
 html, body {
   height: 100%;
   overflow: hidden;
 }
-
+ 
 body {
   margin: 0;
   font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -20,8 +20,8 @@ body {
     #0f1222;
   overflow: hidden;
 }
-
-
+ 
+ 
 /*-------------TOPBAR-----------*/
 .topbar {
   position: sticky;
@@ -36,7 +36,7 @@ body {
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-
+ 
 .icon-btn {
   width: 38px;
   height: 38px;
@@ -47,19 +47,19 @@ body {
   place-items: center;
   cursor: pointer;
 }
-
+ 
 .icon {
   font-size: 18px;
   color: rgba(255,255,255,0.9);
 }
-
+ 
 /*-------------LOGO-----------*/
 .brand {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
+ 
 .brand-name {
   font-family: "Syne", sans-serif;
   font-weight: 800;
@@ -67,17 +67,17 @@ body {
   letter-spacing: -0.6px;
   color: rgba(255,255,255,0.92);
 }
-
+ 
 .brand-name span {
   color: #ff5a5f;
 }
-
-
+ 
+ 
 /*-------------FILTER MENU-----------*/
 .filter-menu-wrap {
   position: relative;
 }
-
+ 
 .filter-menu {
   position: absolute;
   top: 56px;
@@ -91,29 +91,29 @@ body {
   display: none;
   z-index: 60;
 }
-
+ 
 .filter-menu.show {
   display: block;
 }
-
+ 
 .filter-menu {
   width: 280px !important;
 }
-
+ 
 .filter-group {
   display: flex;
   flex-direction: column;
   gap: 6px;
   margin-bottom: 12px;
 }
-
+ 
 .filter-group label {
   color: rgba(255,255,255,0.8);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.04em;
 }
-
+ 
 .filter-group select {
   padding: 10px 12px;
   border-radius: 12px;
@@ -124,11 +124,11 @@ body {
   font-family: "DM Sans", sans-serif;
   font-size: 14px;
 }
-
+ 
 .filter-group option {
   color: black;
 }
-
+ 
 .filter-reset-btn, .pill {
   font-family: "DM Sans", sans-serif;
   width: 100%;
@@ -144,13 +144,13 @@ body {
   cursor: pointer;
   border-radius: 18px;
 }
-
+ 
 .filter-reset-btn:hover {
   color: black;
   background-color: white;
 }
-
-
+ 
+ 
 /*-------------TAG FILTER BUTTONS-----------*/
 .tag-filter-container {
   display: flex;
@@ -158,7 +158,7 @@ body {
   gap: 6px;
   margin-top: 2px;
 }
-
+ 
 .tag-filter-btn {
   padding: 6px 12px;
   border-radius: 999px;
@@ -172,20 +172,20 @@ body {
   transition: all 0.15s ease;
   text-transform: capitalize;
 }
-
+ 
 .tag-filter-btn:hover {
   background: rgba(255,255,255,0.12);
   color: rgba(255,255,255,0.95);
 }
-
+ 
 .tag-filter-btn.active {
   background: #ff5a5f;
   border-color: #ff5a5f;
   color: #fff;
   font-weight: 600;
 }
-
-
+ 
+ 
 /*-------------DISTANCE SLIDER-----------*/
 .distance-label {
   color: #ff5a5f;
@@ -193,7 +193,7 @@ body {
   font-size: 12px;
   margin-left: 6px;
 }
-
+ 
 .distance-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -206,7 +206,7 @@ body {
   margin: 6px 0 2px;
   border: none;
 }
-
+ 
 .distance-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -218,11 +218,11 @@ body {
   cursor: pointer;
   transition: transform 0.15s ease;
 }
-
+ 
 .distance-slider::-webkit-slider-thumb:hover {
   transform: scale(1.2);
 }
-
+ 
 .distance-slider::-moz-range-thumb {
   width: 18px;
   height: 18px;
@@ -232,7 +232,7 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.35);
   cursor: pointer;
 }
-
+ 
 .slider-ticks {
   display: flex;
   justify-content: space-between;
@@ -240,8 +240,8 @@ body {
   color: rgba(255,255,255,0.4);
   margin-top: 2px;
 }
-
-
+ 
+ 
 /*-------------APP LAYOUT-----------*/
 .app {
   max-width: 460px;
@@ -251,10 +251,10 @@ body {
   display: grid;
   grid-template-rows: minmax(0, 1fr) 72px;
   row-gap: 10px;
-  overflow: hidden;
+  overflow: visible;
 }
-
-
+ 
+ 
 /*-------------DECK-----------*/
 .deck-wrap {
   position: relative;
@@ -262,14 +262,14 @@ body {
   min-height: 0;
   display: block;
 }
-
+ 
 .deck {
   position: relative;
   width: 100%;
   height: 100%;
 }
-
-
+ 
+ 
 /*-------------CARD SHELL-----------*/
 .card {
   position: absolute;
@@ -282,17 +282,17 @@ body {
   perspective: 1200px;
   background: transparent;
 }
-
+ 
 .card.dragging {
   transition: none !important;
   cursor: grabbing;
 }
-
+ 
 .card:not(.dragging) {
   transition: transform 160ms ease;
 }
-
-
+ 
+ 
 /*-------------CARD FLIP-----------*/
 .card-inner {
   position: relative;
@@ -302,11 +302,11 @@ body {
   transform-style: preserve-3d;
   transition: transform 0.6s ease;
 }
-
+ 
 .card.flipped .card-inner {
   transform: rotateY(180deg);
 }
-
+ 
 .card-face {
   position: absolute;
   inset: 0;
@@ -316,11 +316,11 @@ body {
   -webkit-backface-visibility: hidden;
   box-shadow: 0 30px 90px rgba(0,0,0,0.2);
 }
-
+ 
 .card-front {
   background: #111;
 }
-
+ 
 .card-back {
   background: linear-gradient(180deg, #1b1f3a 0%, #101322 100%);
   color: rgba(255,255,255,0.92);
@@ -330,8 +330,8 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-
-
+ 
+ 
 /*-------------CARD FRONT-----------*/
 /* Photo carousel container fills the full card face */
 .photo-carousel {
@@ -340,7 +340,7 @@ body {
   overflow: hidden;
   border-radius: 26px 26px 0 0;
 }
-
+ 
 /* Individual photo slide — only .active is visible */
 .photo-slide {
   position: absolute;
@@ -351,11 +351,11 @@ body {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
+ 
 .photo-slide.active {
   opacity: 1;
 }
-
+ 
 .photo-tap-prev,
 .photo-tap-next {
   position: absolute;
@@ -365,11 +365,11 @@ body {
   z-index: 6;
   cursor: pointer;
 }
-
-
+ 
+ 
 .photo-tap-prev { left: 0; }
 .photo-tap-next { right: 0; }
-
+ 
 /* Dot indicators — centered just above the info bar */
 .photo-dots {
   position: absolute;
@@ -382,7 +382,7 @@ body {
   z-index: 7;
   pointer-events: none;
 }
-
+ 
 .photo-dot {
   width: 6px;
   height: 6px;
@@ -390,13 +390,13 @@ body {
   background: rgba(255,255,255,0.4);
   transition: background 0.2s ease, transform 0.2s ease;
 }
-
+ 
 /* Active dot is bright white and slightly larger */
 .photo-dot.active {
   background: #fff;
   transform: scale(1.25);
 }
-
+ 
 .badge {
   position: absolute;
   top: 22px;
@@ -411,21 +411,21 @@ body {
   z-index: 5;
   pointer-events: none;
 }
-
+ 
 .badge.like {
   left: 18px;
   color: #19d36e;
   border-color: #19d36e;
   transform: rotate(-12deg);
 }
-
+ 
 .badge.nope {
   right: 18px;
   color: #ff5a5f;
   border-color: #ff5a5f;
   transform: rotate(12deg);
 }
-
+ 
 /* Solid frosted info panel anchored to the bottom of the front face */
 .info {
   position: absolute;
@@ -443,21 +443,21 @@ body {
   border-top: 1px solid rgba(255,255,255,0.08);
   border-radius: 0 0 26px 26px;
 }
-
+ 
 .title-row {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 10px;
 }
-
+ 
 .name {
   font-family: "Syne", sans-serif;
   font-weight: 900;
   letter-spacing: -0.6px;
   font-size: 22px;
 }
-
+ 
 .sub {
   display: flex;
   gap: 10px;
@@ -465,22 +465,22 @@ body {
   color: rgba(255,255,255,0.78);
   font-size: 13px;
 }
-
+ 
 .chip {
   padding: 6px 10px;
   border-radius: 999px;
   background: rgba(255,255,255,0.10);
   border: 1px solid rgba(255,255,255,0.12);
 }
-
+ 
 .tap-hint {
   margin-top: 4px;
   font-size: 11px;
   color: rgba(255,255,255,0.65);
   font-weight: 600;
 }
-
-
+ 
+ 
 /*-------------CARD BACK-----------*/
 .back-content {
   display: flex;
@@ -489,27 +489,27 @@ body {
   height: 100%;
   justify-content: center;
 }
-
+ 
 .back-title {
   font-family: "Syne", sans-serif;
   font-size: 22px;
   font-weight: 800;
   line-height: 1.1;
 }
-
+ 
 .back-sub {
   color: rgba(255,255,255,0.72);
   font-size: 13px;
   margin-bottom: 2px;
 }
-
+ 
 .back-section {
   padding: 10px 12px;
   border-radius: 14px;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.08);
 }
-
+ 
 .back-label {
   font-size: 10px;
   text-transform: uppercase;
@@ -518,33 +518,33 @@ body {
   margin-bottom: 3px;
   font-weight: 700;
 }
-
+ 
 .back-value {
   font-size: 13px;
   line-height: 1.35;
   color: rgba(255,255,255,0.92);
 }
-
+ 
 .back-value a {
   color: #ff8a4c;
   text-decoration: none;
 }
-
+ 
 .back-value a:hover {
   text-decoration: underline;
 }
-
+ 
 .back-hint {
   text-align: center;
   margin-top: 4px;
 }
-
-
+ 
+ 
 /*-------------TAG CHIPS-----------*/
 .tags-row {
   margin-top: -4px;
 }
-
+ 
 .tag-chip {
   font-size: 11px !important;
   padding: 4px 8px !important;
@@ -553,14 +553,14 @@ body {
   color: rgba(255,200,200,0.92) !important;
   text-transform: capitalize;
 }
-
+ 
 .back-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   margin-bottom: 2px;
 }
-
+ 
 .back-tag {
   padding: 4px 10px;
   border-radius: 999px;
@@ -571,22 +571,22 @@ body {
   font-weight: 600;
   text-transform: capitalize;
 }
-
-
+ 
+ 
 /*-------------STACK LAYERING-----------*/
 .card.layer-1 {
   transform: scale(0.97) translateY(10px);
 }
-
+ 
 .card.layer-2 {
   transform: scale(0.94) translateY(20px);
 }
-
+ 
 .card.top {
   z-index: 10;
 }
-
-
+ 
+ 
 /*-------------CHOSEN BANNER-----------*/
 .chosen-banner {
   display: block;
@@ -602,12 +602,12 @@ body {
   letter-spacing: 0.01em;
   text-align: center;
 }
-
+ 
 .card .card-back .chosen-banner {
   display: none;
 }
-
-
+ 
+ 
 /*-------------CHOSEN OVERLAY-----------*/
 /* Full-deck overlay shown after a restaurant is liked */
 .chosen-overlay {
@@ -618,11 +618,11 @@ body {
   border-radius: 26px;
   overflow: hidden;
 }
-
+ 
 .chosen-overlay.show {
   display: block;
 }
-
+ 
 /* Inner card face */
 .chosen-overlay-card {
   position: absolute;
@@ -637,25 +637,25 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-
-
+ 
+ 
 /*-------------SWIPE ANIMATIONS-----------*/
-
+ 
 /* Card flying off to the left (pass) */
 .card.fly-left {
   transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease !important;
   transform: translateX(-150%) rotate(-28deg) !important;
   opacity: 0;
 }
-
+ 
 /* Card flying off to the right (like) */
 .card.fly-right {
   transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease !important;
   transform: translateX(150%) rotate(28deg) !important;
   opacity: 0;
 }
-
-
+ 
+ 
 /*-------------EMPTY STATE-----------*/
 .empty {
   position: absolute;
@@ -665,26 +665,26 @@ body {
   text-align: center;
   padding: 24px;
 }
-
+ 
 .empty.show {
   display: grid;
 }
-
+ 
 .empty-title {
   font-family: "Syne", sans-serif;
   font-weight: 900;
   color: rgba(255,255,255,0.92);
   font-size: 18px;
 }
-
+ 
 .empty-sub {
   margin-top: 6px;
   margin-bottom: 14px;
   color: rgba(255,255,255,0.62);
   font-size: 14px;
 }
-
-
+ 
+ 
 /*-------------ACTION BUTTONS-----------*/
 .actions {
   height: 72px;
@@ -694,7 +694,7 @@ body {
   gap: 12px;
   padding: 0;
 }
-
+ 
 /* Shared button base */
 .action {
   width: 58px;
@@ -712,23 +712,23 @@ body {
   transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
   overflow: visible;
 }
-
+ 
 .action:hover {
   transform: scale(1.08);
   box-shadow: 0 12px 30px rgba(0,0,0,0.35);
 }
-
+ 
 /* Icon colour per action type */
 .action-nope   { color: #ff4d4d; }
 .action-like   { color: #2ecc71; }
 .action-rewind { color: #f5c542; }
-
+ 
 .action-ic {
   font-size: 26px;
   line-height: 1;
   display: block;
 }
-
+ 
 /* Applied when a restaurant has been chosen */
 .disabled-action {
   opacity: 0.35;
@@ -736,7 +736,7 @@ body {
   pointer-events: none;
   box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
-
+ 
 .toast {
   position: fixed;
   left: 50%;
@@ -751,49 +751,121 @@ body {
   z-index: 120;
   font-size: 13px;
 }
-
+ 
 .toast.show {
   display: block;
 }
-
-
+ 
+ 
 /*-------------GROUP MODE TOGGLE-----------*/
-/* Left side of topbar — toggle button + member count */
 .group-toggle-wrap {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
-
+ 
+.mode-toggle-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+ 
 .group-status {
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-left: 8px;
 }
-
-/* Person icon beside the member count */
+ 
 .member-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
-  opacity: 1;
 }
-
+ 
 .group-count {
   font-family: "DM Sans", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14px;
   line-height: 1;
-  color: rgba(255,255,255,1);
-  width: 14px;
+  color: rgba(255,255,255,0.9);
+  min-width: 14px;
   text-align: left;
 }
-
-/* When group mode is active — icon turns red */
-.group-toggle-btn.active .icon {
+ 
+/* The pill track */
+.mode-toggle-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 216px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+}
+ 
+.mode-toggle-btn.active .mode-toggle-track {
+  border-color: rgba(255, 90, 95, 0.5);
+}
+ 
+/* Sliding thumb behind the active label */
+.mode-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  transition: transform 0.25s cubic-bezier(.4,0,.2,1), background 0.25s ease;
+  left: 3px;
+  z-index: 0;
+}
+ 
+.mode-toggle-btn.active .mode-toggle-thumb {
+  transform: translateX(calc(216px / 2 - 3px));
+  background: rgba(255, 90, 95, 0.35);
+}
+ 
+/* Both labels sit in the pill, split 50/50 */
+.mode-label {
+  position: relative;
+  z-index: 1;
+  width: 50%;
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+  pointer-events: none;
+  padding: 0 8px;
+}
+ 
+.mode-label-solo {
+  color: rgba(255,255,255,0.92);
+}
+ 
+.mode-label-collab {
+  color: rgba(255,255,255,0.38);
+  font-size: 13px;
+}
+ 
+/* When active: solo dims, collab brightens */
+.mode-toggle-btn.active .mode-label-solo {
+  color: rgba(255,255,255,0.38);
+}
+ 
+.mode-toggle-btn.active .mode-label-collab {
   color: #ff5a5f;
 }
-
+ 
 /*-------------GROUP VOTE POPUP-----------*/
 .group-popup {
   position: fixed;
@@ -808,13 +880,13 @@ body {
   transform: translateY(20px);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
-
+ 
 .group-popup.show {
   opacity: 1;
   transform: translateY(0);
   pointer-events: all;
 }
-
+ 
 /* Inner panel card */
 .group-popup-inner {
   width: calc(100% - 28px);
@@ -828,13 +900,13 @@ body {
   flex-direction: column;
   gap: 12px;
 }
-
+ 
 .group-popup-votes {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
-
+ 
 /* Individual member vote chip */
 .vote-chip {
   display: flex;
@@ -846,21 +918,21 @@ body {
   font-weight: 600;
   font-family: "DM Sans", sans-serif;
 }
-
+ 
 /* Green tint for yes votes */
 .vote-chip.yes {
   background: rgba(25, 211, 110, 0.15);
   border: 1px solid rgba(25, 211, 110, 0.35);
   color: #19d36e;
 }
-
+ 
 /* Red tint for no votes */
 .vote-chip.no {
   background: rgba(255, 90, 95, 0.15);
   border: 1px solid rgba(255, 90, 95, 0.35);
   color: #ff5a5f;
 }
-
+ 
 /* Letter avatar circle inside each vote chip */
 .vote-chip .vote-avatar {
   width: 20px;
@@ -874,17 +946,17 @@ body {
   text-transform: uppercase;
   flex-shrink: 0;
 }
-
+ 
 .vote-chip.yes .vote-avatar {
   background: #19d36e;
   color: #0a2e1a;
 }
-
+ 
 .vote-chip.no .vote-avatar {
   background: #ff5a5f;
   color: #2e0a0b;
 }
-
+ 
 /* Result message */
 .group-popup-msg {
   font-family: "Syne", sans-serif;
@@ -893,17 +965,17 @@ body {
   color: rgba(255,255,255,0.92);
   line-height: 1.3;
 }
-
+ 
 /* Consensus message */
 .group-popup-msg.consensus {
   color: #19d36e;
 }
-
+ 
 /* Dimmed for "keep swiping" or pass messages */
 .group-popup-msg.no-consensus {
   color: rgba(255,255,255,0.7);
 }
-
+ 
 /* Continue dismiss button */
 .group-popup-btn {
   padding: 12px;
@@ -917,18 +989,83 @@ body {
   cursor: pointer;
   transition: background 0.15s ease;
 }
-
+ 
 .group-popup-btn:hover {
   background: rgba(255,255,255,0.18);
 }
-
+ 
 /* Green variant for the consensus button */
 .group-popup-btn.consensus-btn {
   background: rgba(25, 211, 110, 0.18);
   color: #19d36e;
   border: 1px solid rgba(25, 211, 110, 0.35);
 }
-
+ 
 .group-popup-btn.consensus-btn:hover {
   background: rgba(25, 211, 110, 0.28);
+}
+ 
+/*-------------SWIPE ARROWS-----------*/
+.swipe-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  pointer-events: all;
+  cursor: pointer;
+  z-index: 20;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+ 
+.swipe-arrow-left {
+  left: -38px;
+  color: #ff4d4d;
+}
+ 
+.swipe-arrow-right {
+  right: -38px;
+  color: #2ecc71;
+}
+ 
+.swipe-arrow span {
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+}
+ 
+.swipe-arrow i {
+  font-size: 26px;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+}
+ 
+/* Pulse animation when card is being dragged toward that side */
+.swipe-arrow.active i {
+  animation: arrowPulse 0.6s ease infinite alternate;
+}
+ 
+@keyframes arrowPulse {
+  from { transform: translateX(0) scale(1); opacity: 0.9; }
+  to   { transform: translateX(-4px) scale(1.15); opacity: 1; }
+}
+ 
+.swipe-arrow-right.active i {
+  animation: arrowPulseRight 0.6s ease infinite alternate;
+}
+ 
+@keyframes arrowPulseRight {
+  from { transform: translateX(0) scale(1); opacity: 0.9; }
+  to   { transform: translateX(4px) scale(1.15); opacity: 1; }
+}
+ 
+/* deck-wrap must not clip the arrows */
+.deck-wrap {
+  overflow: visible !important;
 }

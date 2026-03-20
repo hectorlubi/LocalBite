@@ -38,7 +38,7 @@ const restaurants = [
     hours: "Mon–Sat 11am–10pm",
     website: "https://example.com/superboys"
   },
-
+ 
   // PIZZA
   {
     name: "Santa Lucia Pizza",
@@ -76,7 +76,7 @@ const restaurants = [
     hours: "Daily 11am–12am",
     website: "https://littlepizzaheaven.ca"
   },
-
+ 
   // HALAL / MIDDLE EASTERN
   {
     name: "Baraka Pita Bakery",
@@ -102,7 +102,7 @@ const restaurants = [
     hours: "Daily 11am–10pm",
     website: "https://ramallahcafe.com"
   },
-
+ 
   // CHINESE
   {
     name: "Sun Fortune Restaurant",
@@ -128,7 +128,7 @@ const restaurants = [
     hours: "Tue–Sun 11am–9pm",
     website: "https://example.com/goldenloong"
   },
-
+ 
   // SUSHI
   {
     name: "Yujiro Japanese Restaurant",
@@ -166,7 +166,7 @@ const restaurants = [
     hours: "Daily 11am–11pm",
     website: "https://example.com/kaisushi"
   },
-
+ 
   // FAST FOOD
   {
     name: "Dairy Queen Grill & Chill",
@@ -192,7 +192,7 @@ const restaurants = [
     hours: "Daily 11am–10pm",
     website: "https://fiveguys.ca"
   },
-
+ 
   // VEGAN
   {
     name: "Roughage Eatery",
@@ -218,7 +218,7 @@ const restaurants = [
     hours: "Mon–Sat 11am–8pm",
     website: "https://example.com/affinity"
   },
-
+ 
   // DESSERT
   {
     name: "Chaeban Ice Cream",
@@ -244,7 +244,7 @@ const restaurants = [
     hours: "Daily 12pm–9pm",
     website: "https://feteicecream.com"
   },
-
+ 
   // INDIAN
   {
     name: "East India Company",
@@ -270,7 +270,7 @@ const restaurants = [
     hours: "Daily 11am–10pm",
     website: "https://clayoven.ca"
   },
-
+ 
   // COFFEE
   {
     name: "Little Sister Coffee Maker",
@@ -296,7 +296,7 @@ const restaurants = [
     hours: "Daily 7am–6pm",
     website: "https://thombargen.com"
   },
-
+ 
   // EXTRA CUISINES
   {
     name: "Pho Hoang",
@@ -335,15 +335,15 @@ const restaurants = [
     website: "https://deerandalmond.com"
   }
 ];
-
+ 
 // All possible cuisine/type tags used across the restaurant list
 const ALL_TAGS = [
   "burger","pizza","halal","chinese","sushi",
   "fast food","vegan","dessert","indian","coffee",
   "thai","vietnamese","middle eastern"
 ];
-
-
+ 
+ 
 /*-------------STATE VARIABLES-----------*/
 // Working copy of restaurants, updated whenever filters change
 let filteredRestaurants = [...restaurants];
@@ -353,13 +353,13 @@ let index = 0;
 let isAnimating = false;
 // The restaurant that was liked and is currently shown in the overlay
 let chosenRestaurant = null;
-
+ 
 // Arrays to track what the user has liked, passed, and the full swipe history
 const liked = [];
 const passed = [];
 const history = [];
-
-
+ 
+ 
 /*-------------CARD BUILDER-----------*/
 // Builds the full HTML string for a single restaurant card (front + back faces)
 function buildCard(r, layerClass, cardIndex) {
@@ -368,26 +368,26 @@ function buildCard(r, layerClass, cardIndex) {
   const tagsHtml = r.tags.map(t =>
     `<span class="chip tag-chip">${t}</span>`
   ).join("");
-
+ 
   // Build photo slide divs — one per photo, first is active
   const slidesHtml = photos.map((src, i) =>
     `<div class="photo-slide${i === 0 ? " active" : ""}" style="background-image:url('${src}')"></div>`
   ).join("");
-
+ 
   // Build dot indicators — only rendered when there are multiple photos
   const dotsHtml = photos.length > 1
     ? `<div class="photo-dots">${photos.map((_, i) =>
         `<span class="photo-dot${i === 0 ? " active" : ""}"></span>`
       ).join("")}</div>`
     : "";
-
+ 
   return `
     <article class="card ${layerClass}" data-index="${cardIndex}" data-photo-index="0" data-photo-count="${photos.length}">
       <div class="card-inner">
-
+ 
         <!-- Front face: photo carousel, name, rating, and tags -->
         <div class="card-face card-front">
-
+ 
           <!-- Photo carousel — tap zones live inside so they're bounded by carousel height -->
           <div class="photo-carousel">
             ${slidesHtml}
@@ -397,10 +397,10 @@ function buildCard(r, layerClass, cardIndex) {
             <!-- Dot indicators at the bottom of the carousel -->
             ${dotsHtml}
           </div>
-
+ 
           <div class="badge like">LIKE</div>
           <div class="badge nope">NOPE</div>
-
+ 
           <!-- Solid info panel at the bottom -->
           <div class="info">
             <div class="title-row">
@@ -415,7 +415,7 @@ function buildCard(r, layerClass, cardIndex) {
             <div class="tap-hint">Tap here for details - Tap photo to cycle</div>
           </div>
         </div>
-
+ 
         <!-- Back face: full restaurant details (shown on tap/flip) -->
         <div class="card-face card-back">
           <div class="chosen-banner">You chose ${escapeHtml(r.name)}</div>
@@ -444,46 +444,46 @@ function buildCard(r, layerClass, cardIndex) {
             <div class="tap-hint back-hint">Tap to return</div>
           </div>
         </div>
-
+ 
       </div>
     </article>
   `;
 }
-
+ 
 function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, s => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s]));
 }
-
-
+ 
+ 
 /*-------------DECK RENDER-----------*/
 // Rebuilds the visible card stack (up to 3 cards) from the current index
 function render() {
   const stack = document.getElementById("cardStack");
   const empty = document.getElementById("emptyState");
   stack.innerHTML = "";
-
+ 
   // Show empty state if all cards have been swiped
   if (index >= filteredRestaurants.length) {
     empty.classList.add("show");
     return;
   }
-
+ 
   empty.classList.remove("show");
   const remaining = filteredRestaurants.length - index;
   const layers = Math.min(3, remaining); // Show at most 3 stacked cards
-
+ 
   // Render from back to front so the top card sits on top in the DOM
   for (let i = layers - 1; i >= 0; i--) {
     const r = filteredRestaurants[index + i];
     const layerClass = i === 0 ? "top" : (i === 1 ? "layer-1" : "layer-2");
     stack.insertAdjacentHTML("beforeend", buildCard(r, layerClass, index + i));
   }
-
+ 
   initDrag();
   initFlip();
 }
-
-
+ 
+ 
 /*-------------SWIPE FUNCTIONS-----------*/
 function swipe(isLike) {
   if (isAnimating || chosenRestaurant) return;
@@ -491,21 +491,21 @@ function swipe(isLike) {
   if (!top) return;
   const current = filteredRestaurants[index];
   if (!current) return;
-
+ 
   isAnimating = true;
-
+ 
   // Record this swipe in history for potential undo
   history.push({ idx: index, action: isLike ? "like" : "pass", restaurant: current });
   if (isLike) liked.push(current);
   else passed.push(current);
-
+ 
   // Animate the card flying off screen
   top.classList.add(isLike ? "fly-right" : "fly-left");
-
+ 
   setTimeout(() => {
     index++;
     isAnimating = false;
-
+ 
     if (groupModeActive) {
       // Show group vote popup before proceeding
       const consensus = isLike ? incrementAndCheckConsensus(current) : false;
@@ -537,13 +537,13 @@ function swipe(isLike) {
     }
   }, 440);
 }
-
+ 
 // Reverts the most recent swipe action
 function undoLastSwipe() {
   if (isAnimating) return;
   const last = history.pop();
   if (!last) { showToast("Nothing to undo"); return; }
-
+ 
   if (last.action === "like") {
     liked.pop();
     chosenRestaurant = null;
@@ -557,18 +557,18 @@ function undoLastSwipe() {
     const key = last.restaurant.name;
     if (likeAttempts[key]) likeAttempts[key]--;
   }
-
+ 
   // Put the restaurant back at the correct position in the filtered list
   if (!filteredRestaurants.includes(last.restaurant)) {
     filteredRestaurants.splice(index, 0, last.restaurant);
   } else {
     index = filteredRestaurants.indexOf(last.restaurant);
   }
-
+ 
   showToast("Undone");
   render();
 }
-
+ 
 // Resets all state back to the beginning
 function resetDeck() {
   index = 0;
@@ -582,13 +582,13 @@ function resetDeck() {
   setActionButtonsDisabled(false);
   render();
 }
-
-
+ 
+ 
 /*-------------FILTER FUNCTIONS-----------*/
 // Active filter state
 let activeTagFilters = new Set();
 let activeDistanceFilter = "all";
-
+ 
 // Dynamically creates a toggle button for each cuisine
 function buildTagFilters() {
   const container = document.getElementById("tagFilterContainer");
@@ -603,7 +603,7 @@ function buildTagFilters() {
     container.appendChild(btn);
   });
 }
-
+ 
 // Adds or removes a tag from the active filter set and re-applies filters
 function toggleTagFilter(tag, btn) {
   if (activeTagFilters.has(tag)) {
@@ -615,19 +615,19 @@ function toggleTagFilter(tag, btn) {
   }
   applyFilters();
 }
-
+ 
 // Updates the distance label text as the slider is dragged
 function updateDistanceLabel(val) {
   const label = document.getElementById("distanceLabel");
   if (!label) return;
   label.textContent = Number(val) >= 50 ? "Any distance" : `Within ${val} km`;
 }
-
+ 
 // Filters the restaurant list by distance and active tags, then re-renders the deck
 function applyFilters() {
   const sliderVal = Number(document.getElementById("distanceFilter").value);
   const maxDist = sliderVal >= 50 ? Infinity : sliderVal;
-
+ 
   filteredRestaurants = restaurants.filter((r) => {
     const matchesDistance = r.distanceKm <= maxDist;
     const matchesTags = activeTagFilters.size === 0 || r.tags.some(t => activeTagFilters.has(t));
@@ -635,14 +635,14 @@ function applyFilters() {
     const alreadySeen = passed.includes(r) || liked.includes(r) || pendingConsensus.has(r.name);
     return matchesDistance && matchesTags && !alreadySeen;
   });
-
+ 
   index = 0;
   chosenRestaurant = null;
   hideChosenOverlay();
   setActionButtonsDisabled(false);
   render();
 }
-
+ 
 // Resets all filters to defaults and re-renders without affecting swipe history
 function resetFilters() {
   document.getElementById("distanceFilter").value = 50;
@@ -651,7 +651,7 @@ function resetFilters() {
   activeTagFilters.clear();
   activeDistanceFilter = "all";
   document.querySelectorAll(".tag-filter-btn").forEach(btn => btn.classList.remove("active"));
-
+ 
   // Rebuild filtered list excluding already-swiped restaurants
   filteredRestaurants = restaurants.filter(r => !passed.includes(r) && !liked.includes(r) && !pendingConsensus.has(r.name));
   index = 0;
@@ -660,23 +660,23 @@ function resetFilters() {
   setActionButtonsDisabled(false);
   render();
 }
-
+ 
 // Toggles the filter dropdown panel open/closed
 function toggleFilterMenu() {
   document.getElementById("filterMenu").classList.toggle("show");
 }
-
-
+ 
+ 
 /*-------------CARD INTERACTIONS-----------*/
 // Attaches photo-cycle tap zones and the flip click listener to the top card
 function initFlip() {
   const top = document.querySelector(".card.top");
   if (!top || chosenRestaurant) return;
-
+ 
   // Photo prev/next tap zones (inside the carousel)
   const prevZone = top.querySelector(".photo-tap-prev");
   const nextZone = top.querySelector(".photo-tap-next");
-
+ 
   if (prevZone) {
     prevZone.addEventListener("click", (e) => {
       if (top.dataset.dragged === "true") return;
@@ -689,7 +689,7 @@ function initFlip() {
       cyclePhoto(top, 1);
     });
   }
-
+ 
   // Flip only when tapping the info panel at the bottom
   const infoPanel = top.querySelector(".info");
   if (infoPanel) {
@@ -701,53 +701,58 @@ function initFlip() {
     });
   }
 }
-
+ 
 // Advances or reverses the photo carousel on a card by one step
 function cyclePhoto(card, direction) {
   const count = parseInt(card.dataset.photoCount, 10) || 1;
   if (count <= 1) return;
-
+ 
   let current = parseInt(card.dataset.photoIndex, 10) || 0;
   const next = (current + direction + count) % count;
-
+ 
   // Swap active slide
   const slides = card.querySelectorAll(".photo-slide");
   slides[current].classList.remove("active");
   slides[next].classList.add("active");
-
+ 
   // Swap active dot
   const dots = card.querySelectorAll(".photo-dot");
   if (dots.length) {
     dots[current].classList.remove("active");
     dots[next].classList.add("active");
   }
-
+ 
   card.dataset.photoIndex = next;
 }
-
+ 
 // Attaches touch and mouse drag listeners to the top card for swipe gestures
 function initDrag() {
   const top = document.querySelector(".card.top");
   if (!top || chosenRestaurant) return;
-
+ 
   let startX=null,startY=null,dx=0,dy=0,dragging=false;
   const likeBadge = top.querySelector(".badge.like");
   const nopeBadge = top.querySelector(".badge.nope");
-
+ 
   // Fades LIKE/NOPE badge in/out based on drag distance and direction
   function setBadges(dxVal) {
     const ratio = Math.min(Math.abs(dxVal)/90,1);
     if (dxVal>0){likeBadge.style.opacity=ratio;nopeBadge.style.opacity=0;}
     else{nopeBadge.style.opacity=ratio;likeBadge.style.opacity=0;}
+    // Activate the matching arrow
+    const arrowL = document.getElementById("swipeArrowLeft");
+    const arrowR = document.getElementById("swipeArrowRight");
+    if (arrowL) arrowL.classList.toggle("active", dxVal < -30);
+    if (arrowR) arrowR.classList.toggle("active", dxVal > 30);
   }
-
+ 
   function onStart(e) {
     if (isAnimating||chosenRestaurant) return;
     if (top.classList.contains("flipped")) return; // Don't drag the back face
     const pt=e.touches?e.touches[0]:e;
     startX=pt.clientX;startY=pt.clientY;dx=0;dy=0;dragging=false;top.dataset.dragged="false";
   }
-
+ 
   function onMove(e) {
     if (startX===null) return;
     const pt=e.touches?e.touches[0]:e;
@@ -760,18 +765,22 @@ function initDrag() {
     setBadges(dx);
     if (e.cancelable) e.preventDefault();
   }
-
+ 
   function onEnd() {
     if (startX===null) return;
     top.classList.remove("dragging");
     likeBadge.style.opacity=0;nopeBadge.style.opacity=0;
+    const arrowL = document.getElementById("swipeArrowLeft");
+    const arrowR = document.getElementById("swipeArrowRight");
+    if (arrowL) arrowL.classList.remove("active");
+    if (arrowR) arrowR.classList.remove("active");
     if (!dragging){startX=null;return;}
     // Trigger a swipe if dragged past the threshold, otherwise snap back
     if (Math.abs(dx)>110) swipe(dx>0);
     else top.style.transform="";
     startX=null;startY=null;dx=0;dy=0;dragging=false;
   }
-
+ 
   // Support both mouse and touch input
   top.addEventListener("mousedown",onStart);
   top.addEventListener("touchstart",onStart,{passive:true});
@@ -780,38 +789,38 @@ function initDrag() {
   document.addEventListener("mouseup",onEnd);
   document.addEventListener("touchend",onEnd);
 }
-
-
+ 
+ 
 /*-------------CHOSEN OVERLAY-----------*/
 // Populates and shows the full-screen chosen restaurant overlay
 function showChosenOverlay(r) {
   const overlay = document.getElementById("chosenOverlay");
   if (!overlay) return;
-
+ 
   document.getElementById("chosenTitle").textContent = `You chose ${r.name}`;
   document.getElementById("chosenName").textContent = r.name;
   document.getElementById("chosenSub").innerHTML = `${r.price} • <i class="fa-solid fa-star" style="color: rgb(255, 212, 59);"></i> ${r.rating ?? "—"}`;
-
+ 
   const tagsEl = document.getElementById("chosenTags");
   if (tagsEl) tagsEl.innerHTML = r.tags.map(t=>`<span class="back-tag">${t}</span>`).join("");
-
+ 
   document.getElementById("chosenContact").textContent = r.contact ?? "—";
   document.getElementById("chosenAddress").textContent = r.address ?? "—";
   document.getElementById("chosenHours").textContent = r.hours ?? "—";
-
+ 
   const websiteEl = document.getElementById("chosenWebsite");
   if (r.website) websiteEl.innerHTML = `<a href="${r.website}" target="_blank" rel="noopener">Visit website</a>`;
   else websiteEl.textContent = "—";
-
+ 
   overlay.classList.add("show");
 }
-
+ 
 // Hides the chosen overlay (used on undo or filter reset)
 function hideChosenOverlay() {
   const overlay = document.getElementById("chosenOverlay");
   if (overlay) overlay.classList.remove("show");
 }
-
+ 
 // Disables or re-enables the pass/like action buttons
 function setActionButtonsDisabled(disabled) {
   ["passBtn","likeBtn"].forEach(id => {
@@ -821,11 +830,11 @@ function setActionButtonsDisabled(disabled) {
     btn.classList.toggle("disabled-action", disabled);
   });
 }
-
-
+ 
+ 
 /*-------------TOAST-----------*/
 let toastTimer = null;
-
+ 
 function showToast(msg) {
   const t = document.getElementById("toast");
   t.textContent = msg;
@@ -833,48 +842,44 @@ function showToast(msg) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove("show"), 1100);
 }
-
-
+ 
+ 
 /*-------------GROUP MODE-----------*/
 // Simulated group members who vote alongside the user
 const GROUP_MEMBERS = ["John", "Ethan", "Davud", "Will", "Hector"];
 let groupModeActive = false;
-
+ 
 // Tracks how many times each restaurant has been liked
 const likeAttempts = {};
 // Restaurants that were liked but didn't reach consensus (kept out of the deck until reset)
 const pendingConsensus = new Set();
-
-// Toggles group mode on/off and updates the header icon and member count display
+ 
+// Toggles group mode on/off and updates the header pill toggle
 function toggleGroupMode() {
   groupModeActive = !groupModeActive;
-  const icon = document.getElementById("groupToggleIcon");
   const btn = document.getElementById("groupToggleBtn");
   const count = document.getElementById("groupCount");
-
   if (groupModeActive) {
-    icon.classList.replace("fa-toggle-off", "fa-toggle-on");
     btn.classList.add("active");
-    count.textContent = "6"; // group mode
+    if (count) count.textContent = "6";
   } else {
-    icon.classList.replace("fa-toggle-on", "fa-toggle-off");
     btn.classList.remove("active");
-    count.textContent = "1"; // solo mode
+    if (count) count.textContent = "1";
   }
 }
-
+ 
 // Increments the like attempt count for a restaurant and returns true once threshold is met
 function incrementAndCheckConsensus(restaurant) {
   const key = restaurant.name;
   likeAttempts[key] = (likeAttempts[key] || 0) + 1;
   return likeAttempts[key] >= 1; // Consensus reached on first like attempt
 }
-
+ 
 // Generates simulated vote results for each group member based on swipe outcome
 function getGroupVotes(isLike, restaurant, consensus) {
   const key = restaurant.name;
   const attempt = likeAttempts[key] || 0;
-
+ 
   if (isLike) {
     if (consensus) {
       // all members vote yes
@@ -890,16 +895,16 @@ function getGroupVotes(isLike, restaurant, consensus) {
     return GROUP_MEMBERS.map(name => ({ name, vote: Math.random() > 0.45 }));
   }
 }
-
+ 
 // Builds and displays the group vote popup with per-member vote chips and a result message
 function showGroupVotePopup(restaurant, isLike, consensus, onDismiss) {
   const popup = document.getElementById("groupPopup");
   const votesEl = document.getElementById("groupPopupVotes");
   const msgEl = document.getElementById("groupPopupMsg");
   const btn = document.getElementById("groupPopupBtn");
-
+ 
   const votes = getGroupVotes(isLike, restaurant, consensus);
-
+ 
   // Build a chip for each group member's vote
   votesEl.innerHTML = votes.map(v => `
     <div class="vote-chip ${v.vote ? "yes" : "no"}">
@@ -907,13 +912,13 @@ function showGroupVotePopup(restaurant, isLike, consensus, onDismiss) {
       ${v.name} said <strong>${v.vote ? "yes" : "no"}</strong>
     </div>
   `).join("");
-
+ 
   const youChip = `<div class="vote-chip ${isLike ? "yes" : "no"}">
     <div class="vote-avatar">Y</div>
     You said <strong>${isLike ? "yes" : "no"}</strong>
   </div>`;
   votesEl.innerHTML = youChip + votesEl.innerHTML;
-
+ 
   // Set the result message and button style based on outcome
   if (!isLike) {
     msgEl.textContent = "Moving on to the next one.";
@@ -931,11 +936,11 @@ function showGroupVotePopup(restaurant, isLike, consensus, onDismiss) {
     btn.textContent = "Continue";
     btn.className = "group-popup-btn";
   }
-
+ 
   popup.classList.add("show");
   popup._onDismiss = onDismiss;
 }
-
+ 
 function dismissGroupPopup() {
   const popup = document.getElementById("groupPopup");
   popup.classList.remove("show");
@@ -944,8 +949,8 @@ function dismissGroupPopup() {
     popup._onDismiss = null;
   }
 }
-
-
+ 
+ 
 /*-------------SLIDER FILL-----------*/
 function syncSliderFill() {
   const slider = document.getElementById("distanceFilter");
@@ -953,27 +958,27 @@ function syncSliderFill() {
   const pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
   slider.style.setProperty("--val", pct + "%");
 }
-
-
+ 
+ 
 /*-------------INITIALIZATION-----------*/
 // Runs on page load — sets up filters, slider, deck, and keyboard/click listeners
 document.addEventListener("DOMContentLoaded", () => {
   buildTagFilters();
   updateDistanceLabel(50);
-
+ 
   // Sync slider fill whenever the value changes
   document.getElementById("distanceFilter").addEventListener("input", syncSliderFill);
   syncSliderFill();
-
+ 
   render();
-
+ 
   // Close the filter menu when clicking outside of it
   document.addEventListener("click", (e) => {
     const menu = document.getElementById("filterMenu");
     const wrap = document.querySelector(".filter-menu-wrap");
     if (wrap && !wrap.contains(e.target)) menu.classList.remove("show");
   });
-
+ 
   // Keyboard shortcuts: arrow keys to swipe, Z to undo, Escape to close filter menu
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") document.getElementById("filterMenu").classList.remove("show");
